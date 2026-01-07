@@ -56,6 +56,9 @@ namespace LearnNotesStaff
 			int staffStartNote = NoteUtilities.GetNoteNumber(NoteName.E, 4);
 			int bassStaffStartNote = NoteUtilities.GetNoteNumber(NoteName.G, 2);
 
+			int minStaffNote = NoteUtilities.GetNoteNumber(NoteName.G, 3);
+			int maxBassStaffNote = NoteUtilities.GetNoteNumber(NoteName.E, 4);
+
 			DrawStaff(StaffTop);
 			DrawOtherStaff(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
 			DrawNote(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
