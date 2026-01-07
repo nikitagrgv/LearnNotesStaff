@@ -246,7 +246,7 @@ namespace LearnNotesStaff
 			timer.Tick += (s, e) =>
 			{
 				timer.Stop(); // stop so it only fires once
-				action.Invoke();
+				Dispatcher.Invoke(action.Invoke);
 			};
 			timer.Start();
 		}
