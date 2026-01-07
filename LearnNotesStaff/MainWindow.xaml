@@ -11,8 +11,9 @@
             <TextBlock x:Name="NoteDisplay" Text="Press any key to start" FontSize="30" Margin="10" />
             <Button x:Name="SkipButton" Width="200" FontSize="20" Margin="2" Click="SkipButton_OnClick">Skip</Button>
             <Button x:Name="RepeatButton" Width="200" FontSize="20" Margin="2" Click="RepeatButton_OnClick">Repeat</Button>
-            <TextBlock x:Name="StatusDisplay" Text="Waiting..." FontSize="20" Foreground="Gray" />
-            <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="StaffCanvas" Background="White"
+            <TextBlock x:Name="StatusDisplay" Margin="2" Text="Waiting..." FontSize="20" Foreground="Gray" />
+            <Canvas Margin="2" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="StaffCanvas"
+                    Background="White"
                     Loaded="StaffCanvas_Loaded">
             </Canvas>
         </StackPanel>
