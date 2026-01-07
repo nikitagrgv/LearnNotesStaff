@@ -98,12 +98,18 @@ namespace LearnNotesStaff
 			return firstNote > secondNote ? difference : -difference;
 		}
 
-		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
+		private static int GetNoteShelfPosition(int midiNumber, BlackKeyType blackKeyType)
 		{
 			int whiteKey = ToWhiteNote(midiNumber, blackKeyType);
 			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
-			int difference = WhiteKeysDifference(whiteKey, e4);
-			double y = StaffTop + (4 * LineSpacing) - (difference * (LineSpacing / 2));
+			int position = WhiteKeysDifference(whiteKey, e4);
+			return position;
+		}
+
+		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
+		{
+			int position = GetNoteShelfPosition(midiNumber, blackKeyType);
+			double y = StaffTop + (4 * LineSpacing) - (position * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
 			Ellipse noteHead = new Ellipse
