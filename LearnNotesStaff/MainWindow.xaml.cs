@@ -12,6 +12,7 @@ namespace LearnNotesStaff
 	{
 		private InputDevice _inputDevice;
 		private int _targetMidiNote;
+		private BlackKeyType _targetBlackKeyType = BlackKeyType.Sharp;
 		private Random _random = new Random();
 
 		private const double LineSpacing = 20; // Distance between staff lines
@@ -48,7 +49,7 @@ namespace LearnNotesStaff
 		{
 			ClearCanvas();
 			DrawStaff();
-			DrawNote(_targetMidiNote); // Draw an 'E' (bottom line of treble staff)
+			DrawNote(_targetMidiNote, _targetBlackKeyType); // Draw an 'E' (bottom line of treble staff)
 		}
 
 		private void ClearCanvas()
