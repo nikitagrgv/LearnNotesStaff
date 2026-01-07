@@ -94,11 +94,14 @@ namespace LearnNotesStaff
 
 			StaffCanvas.Children.Add(noteHead);
 		}
-		
+
 		private static string GetNoteName(int midiNumber)
 		{
 			// The names of the 12 notes in a single octave
-			string[] noteNames = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
+			string[] noteNames =
+			{
+				"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
+			};
 
 			// 1. Get the name (0 to 11)
 			string name = noteNames[midiNumber % 12];
@@ -109,13 +112,36 @@ namespace LearnNotesStaff
 
 			return $"{name}{octave}";
 		}
-		
+
 		private static bool IsWhiteKey(int midiNumber)
 		{
 			int noteIndex = midiNumber % 12;
 			// Indices for C, D, E, F, G, A, B
-			int[] whiteKeyIndices = { 0, 2, 4, 5, 7, 9, 11 };
+			int[] whiteKeyIndices =
+			{
+				0, 2, 4, 5, 7, 9, 11
+			};
 			return whiteKeyIndices.Contains(noteIndex);
+		}
+
+		private static int SharpToNote(int midiNumber)
+		{
+			while (!IsWhiteKey(midiNumber))
+			{
+				midiNumber--;
+			}
+
+			return midiNumber;
+		}
+		
+		private static int FlatToNote(int midiNumber)
+		{
+			while (!IsWhiteKey(midiNumber))
+			{
+				midiNumber++;
+			}
+
+			return midiNumber;
 		}
 
 		private void GenerateNewNote()
