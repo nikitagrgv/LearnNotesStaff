@@ -184,7 +184,7 @@ namespace LearnNotesStaff
 			}
 			else
 			{
-				StatusDisplay.Text = $"Wrong! You played {playedNote}. Try again!";
+				StatusDisplay.Text = $"Wrong! You played {GetNoteName(playedNote, BlackKeyType.Sharp)}. Try again!";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Red;
 			}
 		}
