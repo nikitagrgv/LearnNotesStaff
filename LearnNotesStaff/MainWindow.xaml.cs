@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Melanchall.DryWetMidi.Common;
 using Melanchall.DryWetMidi.MusicTheory;
 
@@ -236,6 +237,18 @@ namespace LearnNotesStaff
 			SevenBitNumber note = new((byte)midiNumber);
 			return $"{NoteUtilities.GetNoteName(note)}{NoteUtilities.GetNoteOctave(note)}"
 				.Replace("Sharp", "#");
+		}
+
+		private void CallAfter(double time, Action action)
+		{
+			var timer = new DispatcherTimer();
+			timer.Interval = TimeSpan.FromSeconds(time); // 1 second
+			timer.Tick += (s, e) =>
+			{
+				timer.Stop(); // stop so it only fires once
+				action.Invoke();
+			};
+			timer.Start();
 		}
 
 		private void GenerateNewNote()
