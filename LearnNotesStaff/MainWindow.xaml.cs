@@ -165,8 +165,9 @@ namespace LearnNotesStaff
 			// We use Dispatcher because this might be called from the MIDI thread
 			Dispatcher.Invoke(() =>
 			{
+				SevenBitNumber note = new SevenBitNumber((byte)_targetMidiNote);
 				NoteDisplay.Text =
-					$"Play MIDI Note: {NoteUtilities.GetNoteName(new SevenBitNumber((byte)_targetMidiNote))}";
+					$"Play MIDI Note: {NoteUtilities.GetNoteName(note)} {NoteUtilities.GetNoteOctave(note)}";
 				StatusDisplay.Text = "Waiting for input...";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Gray;
 				RedrawCanvas();
