@@ -245,7 +245,7 @@ namespace LearnNotesStaff
 
 			// Range 60 (Middle C) to 72 (C5)
 			int prev = _targetMidiNote;
-			while (prev == _targetMidiNote)
+			while (prev == _targetMidiNote && !IsWhiteKey(_targetMidiNote))
 			{
 				_targetMidiNote = _random.Next(minNote, maxNote + 1);
 			}
