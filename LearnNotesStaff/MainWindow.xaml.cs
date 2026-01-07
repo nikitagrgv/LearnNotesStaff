@@ -73,12 +73,19 @@ namespace LearnNotesStaff
 			}
 		}
 
-		private void DrawNote(int midiNumber)
+		enum BlackKeyType
+		{
+			Sharp,
+			Flat,
+		}
+
+		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
 		{
 			// 1. Calculate the vertical position
 			// MIDI 64 (E4) is the bottom line. Let's map it there.
 			// Every 1 MIDI note change is 0.5 * LineSpacing (roughly, ignoring sharps)
-			double y = StaffTop + (4 * LineSpacing) - ((midiNumber - 64) * (LineSpacing / 2));
+			int whiteKey = blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+			double y = StaffTop + (4 * LineSpacing) - ((whiteKey - 64) * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
 			Ellipse noteHead = new Ellipse
@@ -133,7 +140,7 @@ namespace LearnNotesStaff
 
 			return midiNumber;
 		}
-		
+
 		private static int FlatToNote(int midiNumber)
 		{
 			while (!IsWhiteKey(midiNumber))
