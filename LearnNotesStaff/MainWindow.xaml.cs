@@ -62,15 +62,25 @@ namespace LearnNotesStaff
 
 			int whiteTargetNote = ToWhiteNote(_targetMidiNote, _targetBlackKeyType);
 
+			bool isOnStaff = whiteTargetNote >= minStaffNote;
+			bool isOnBassStaff = whiteTargetNote <= maxBassStaffNote;
+			if (isOnBassStaff && isOnStaff)
+			{
+				if (_random.NextSingle() > 0.5)
+					isOnStaff = false;
+				else
+					isOnBassStaff = false;
+			}
+
 			DrawStaff(StaffTop);
-			if (whiteTargetNote >= minStaffNote)
+			if (isOnStaff)
 			{
 				DrawOtherStaff(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
 				DrawNote(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
 			}
 
 			DrawStaff(BassStaffTop);
-			if (whiteTargetNote <= maxBassStaffNote)
+			if (isOnBassStaff)
 			{
 				DrawOtherStaff(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
 				DrawNote(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
