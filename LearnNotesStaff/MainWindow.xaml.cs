@@ -59,13 +59,21 @@ namespace LearnNotesStaff
 			int minStaffNote = NoteUtilities.GetNoteNumber(NoteName.G, 3);
 			int maxBassStaffNote = NoteUtilities.GetNoteNumber(NoteName.E, 4);
 
+			int whiteTargetNote = ToWhiteNote(_targetMidiNote, _targetBlackKeyType);
+
 			DrawStaff(StaffTop);
-			DrawOtherStaff(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
+			if (whiteTargetNote >= minStaffNote)
+			{
+				DrawOtherStaff(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
+				DrawNote(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
+			}
 
 			DrawStaff(BassStaffTop);
-			DrawOtherStaff(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
+			if (whiteTargetNote <= maxBassStaffNote)
+			{
+				DrawOtherStaff(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
+				DrawNote(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
+			}
 		}
 
 		private void DrawOtherStaff(
