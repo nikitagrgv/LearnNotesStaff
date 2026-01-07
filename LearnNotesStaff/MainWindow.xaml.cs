@@ -255,8 +255,15 @@ namespace LearnNotesStaff
 			// We use Dispatcher because this might be called from the MIDI thread
 			Dispatcher.Invoke(() =>
 			{
-				NoteDisplay.Text =
-					$"Play MIDI Note: {GetNoteName(_targetMidiNote, _targetBlackKeyType)}";
+				if (ShowNoteCheckbox.IsChecked == true)
+				{
+					NoteDisplay.Text = $"Play Note: {GetNoteName(_targetMidiNote, _targetBlackKeyType)}";
+				}
+				else
+				{
+					NoteDisplay.Text = $"Play Note";
+				}
+
 				StatusDisplay.Text = "Waiting for input...";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Gray;
 				RedrawCanvas();
