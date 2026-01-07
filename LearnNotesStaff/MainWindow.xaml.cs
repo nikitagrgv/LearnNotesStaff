@@ -18,8 +18,9 @@ namespace LearnNotesStaff
 		private BlackKeyType _targetBlackKeyType = BlackKeyType.Sharp;
 		private Random _random = new Random();
 
-		private const double LineSpacing = 20; // Distance between staff lines
-		private const double StaffTop = 100;   // Where the first line starts
+		private const double LineSpacing = 20;   // Distance between staff lines
+		private const double StaffTop = 100;     // Where the first line starts
+		private const double BassStaffTop = 300; // Where the first line starts
 
 		public MainWindow()
 		{
@@ -57,6 +58,11 @@ namespace LearnNotesStaff
 			DrawStaff(StaffTop);
 			DrawOtherStaff(_targetMidiNote, e4, StaffTop, _targetBlackKeyType);
 			DrawNote(_targetMidiNote, e4, StaffTop, _targetBlackKeyType);
+
+			int g2 = NoteUtilities.GetNoteNumber(NoteName.G, 2);
+			DrawStaff(BassStaffTop);
+			DrawOtherStaff(_targetMidiNote, e4, BassStaffTop, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, e4, BassStaffTop, _targetBlackKeyType);
 		}
 
 		private void DrawOtherStaff(
