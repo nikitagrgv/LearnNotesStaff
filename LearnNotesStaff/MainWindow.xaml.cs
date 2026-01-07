@@ -157,7 +157,7 @@ namespace LearnNotesStaff
 			};
 
 			// 3. Position it on the Canvas
-			Canvas.SetLeft(noteHead, noteHead.Width / 2);
+			Canvas.SetLeft(noteHead, -noteHead.Width / 2);
 			Canvas.SetTop(noteHead, y - (noteHead.Height / 2));
 
 			StaffCanvas.Children.Add(noteHead);
