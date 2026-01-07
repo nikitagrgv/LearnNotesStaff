@@ -86,8 +86,8 @@ namespace LearnNotesStaff
 		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
 		{
 			int whiteKey = ToWhiteNote(midiNumber, blackKeyType);
-			NoteUtilities.GetNoteNumber(NoteName.E, 4);
-			double y = StaffTop + (4 * LineSpacing) - ((whiteKey - 64) * (LineSpacing / 2));
+			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
+			double y = StaffTop + (4 * LineSpacing) - ((whiteKey - e4) * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
 			Ellipse noteHead = new Ellipse
