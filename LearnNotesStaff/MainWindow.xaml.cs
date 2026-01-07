@@ -275,7 +275,7 @@ namespace LearnNotesStaff
 			if (e.Event is NoteOnEvent noteOn)
 			{
 				int playedNote = noteOn.NoteNumber;
-				PlayNote(playedNote);
+				// PlayNote(playedNote);
 
 				// IMPORTANT: UI updates must happen on the UI Thread
 				Dispatcher.Invoke(() => { CheckNote(playedNote); });
