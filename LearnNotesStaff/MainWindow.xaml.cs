@@ -43,7 +43,7 @@ namespace LearnNotesStaff
 		{
 			ClearCanvas();
 			DrawStaff();
-			DrawNote(64); // Draw an 'E' (bottom line of treble staff)
+			DrawNote(_targetMidiNote); // Draw an 'E' (bottom line of treble staff)
 		}
 
 		private void ClearCanvas()
@@ -101,6 +101,7 @@ namespace LearnNotesStaff
 				NoteDisplay.Text = $"Play MIDI Note: {_targetMidiNote}";
 				StatusDisplay.Text = "Waiting for input...";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Gray;
+				DrawStaff();
 			});
 		}
 
