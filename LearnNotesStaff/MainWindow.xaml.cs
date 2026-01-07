@@ -52,7 +52,29 @@ namespace LearnNotesStaff
 		{
 			ClearCanvas();
 			DrawStaff();
-			DrawNote(_targetMidiNote, _targetBlackKeyType); // Draw an 'E' (bottom line of treble staff)
+			DrawOtherStaff(_targetMidiNote, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, _targetBlackKeyType);
+		}
+
+		private void DrawOtherStaff(int targetMidiNote, BlackKeyType targetBlackKeyType)
+		{
+			int notePos = GetNoteShelfPosition(targetMidiNote, targetBlackKeyType);
+			int start = Math.Min(0, notePos);
+			int end = Math.Max(0, notePos);
+
+			for (int i = start; i <= end; i++)
+			{
+				Line line = new Line
+				{
+					X1 = -10,
+					X2 = 10,
+					Y1 = StaffTop + (i * LineSpacing),
+					Y2 = StaffTop + (i * LineSpacing),
+					Stroke = Brushes.Black,
+					StrokeThickness = 2
+				};
+				StaffCanvas.Children.Add(line);
+			}
 		}
 
 		private void ClearCanvas()
