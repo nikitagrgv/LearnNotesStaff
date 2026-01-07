@@ -41,8 +41,14 @@ namespace LearnNotesStaff
 
 		private void StaffCanvas_Loaded(object sender, RoutedEventArgs e)
 		{
+			ClearCanvas();
 			DrawStaff();
 			DrawNote(64); // Draw an 'E' (bottom line of treble staff)
+		}
+
+		private void ClearCanvas()
+		{
+			StaffCanvas.Children.Clear();
 		}
 
 		private void DrawStaff()
@@ -78,7 +84,7 @@ namespace LearnNotesStaff
 			};
 
 			// 3. Position it on the Canvas
-			Canvas.SetLeft(noteHead, 200);
+			Canvas.SetLeft(noteHead, 0);
 			Canvas.SetTop(noteHead, y - (noteHead.Height / 2));
 
 			StaffCanvas.Children.Add(noteHead);
