@@ -77,7 +77,7 @@ namespace LearnNotesStaff
 				StaffCanvas.Children.Add(line);
 			}
 
-			if (end < 0)
+			if (end <= 0)
 			{
 				Line line = new Line
 				{
