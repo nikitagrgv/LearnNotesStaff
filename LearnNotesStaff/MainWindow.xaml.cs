@@ -2,6 +2,7 @@
 using Melanchall.DryWetMidi.Multimedia;
 using Melanchall.DryWetMidi.Core;
 using System;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -136,6 +137,8 @@ namespace LearnNotesStaff
 		private static int ToWhiteNote(int midiNumber, BlackKeyType blackKeyType)
 		{
 			int whiteNote = blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+			Debug.Assert(GetNoteName(midiNumber, BlackKeyType.Sharp).Replace("#", "") ==
+			             GetNoteName(whiteNote, BlackKeyType.Sharp));
 			return whiteNote;
 		}
 
