@@ -69,8 +69,8 @@ namespace LearnNotesStaff
 				{
 					X1 = -10,
 					X2 = 10,
-					Y1 = StaffTop + (i * LineSpacing),
-					Y2 = StaffTop + (i * LineSpacing),
+					Y1 = StaffTop + (-i * LineSpacing),
+					Y2 = StaffTop + (-i * LineSpacing),
 					Stroke = Brushes.Black,
 					StrokeThickness = 2
 				};
