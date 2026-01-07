@@ -54,12 +54,16 @@ namespace LearnNotesStaff
 
 			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
 
-			DrawStaff();
-			DrawOtherStaff(_targetMidiNote, e4, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, e4, _targetBlackKeyType);
+			DrawStaff(StaffTop);
+			DrawOtherStaff(_targetMidiNote, e4, StaffTop, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, e4, StaffTop, _targetBlackKeyType);
 		}
 
-		private void DrawOtherStaff(int targetMidiNote, int bottomNote, BlackKeyType targetBlackKeyType)
+		private void DrawOtherStaff(
+			int targetMidiNote,
+			int bottomNote,
+			double staffTop,
+			BlackKeyType targetBlackKeyType)
 		{
 			int width = 15;
 			int notePos = GetNoteShelfPosition(targetMidiNote, bottomNote, targetBlackKeyType);
@@ -76,8 +80,8 @@ namespace LearnNotesStaff
 				{
 					X1 = -width,
 					X2 = width,
-					Y1 = StaffTop + (i * LineSpacing),
-					Y2 = StaffTop + (i * LineSpacing),
+					Y1 = staffTop + (i * LineSpacing),
+					Y2 = staffTop + (i * LineSpacing),
 					Stroke = Brushes.Black,
 					StrokeThickness = 2
 				};
@@ -90,8 +94,8 @@ namespace LearnNotesStaff
 				{
 					X1 = -width,
 					X2 = width,
-					Y1 = StaffTop + ((start - 1) * LineSpacing),
-					Y2 = StaffTop + ((start - 1) * LineSpacing),
+					Y1 = staffTop + ((start - 1) * LineSpacing),
+					Y2 = staffTop + ((start - 1) * LineSpacing),
 					Stroke = Brushes.Black,
 					StrokeThickness = 2
 				};
@@ -104,7 +108,7 @@ namespace LearnNotesStaff
 			StaffCanvas.Children.Clear();
 		}
 
-		private void DrawStaff()
+		private void DrawStaff(double staffTop)
 		{
 			for (int i = 0; i < 5; i++)
 			{
@@ -112,8 +116,8 @@ namespace LearnNotesStaff
 				{
 					X1 = -100,
 					X2 = 100,
-					Y1 = StaffTop + (i * LineSpacing),
-					Y2 = StaffTop + (i * LineSpacing),
+					Y1 = staffTop + (i * LineSpacing),
+					Y2 = staffTop + (i * LineSpacing),
 					Stroke = Brushes.Black,
 					StrokeThickness = 2
 				};
@@ -149,10 +153,10 @@ namespace LearnNotesStaff
 			return position;
 		}
 
-		private void DrawNote(int midiNumber, int bottomNote, BlackKeyType blackKeyType)
+		private void DrawNote(int midiNumber, int bottomNote, double staffTop, BlackKeyType blackKeyType)
 		{
 			int position = GetNoteShelfPosition(midiNumber, bottomNote, blackKeyType);
-			double y = StaffTop + (4 * LineSpacing) - (position * (LineSpacing / 2));
+			double y = staffTop + (4 * LineSpacing) - (position * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
 			Ellipse noteHead = new Ellipse
