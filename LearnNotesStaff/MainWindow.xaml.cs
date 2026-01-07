@@ -309,7 +309,7 @@ namespace LearnNotesStaff
 				StatusDisplay.Text = $"Correct! {GetNoteName(playedNote, BlackKeyType.Sharp)}";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Green;
 
-				CallAfter(0.5, GenerateNewNote);
+				CallAfter(1.0, GenerateNewNote);
 			}
 			else
 			{
