@@ -170,11 +170,14 @@ namespace LearnNotesStaff
 
 		private void GenerateNewNote()
 		{
+			int minNote = NoteUtilities.GetNoteNumber(NoteName.C, 2);
+			int maxNote = NoteUtilities.GetNoteNumber(NoteName.C, 6);
+
 			// Range 60 (Middle C) to 72 (C5)
 			int prev = _targetMidiNote;
 			while (prev == _targetMidiNote)
 			{
-				_targetMidiNote = _random.Next(60, 73);
+				_targetMidiNote = _random.Next(minNote, maxNote + 1);
 			}
 
 			_targetBlackKeyType = _random.NextSingle() > 0.5 ? BlackKeyType.Flat : BlackKeyType.Sharp;
