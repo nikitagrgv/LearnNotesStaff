@@ -84,7 +84,7 @@ namespace LearnNotesStaff
 
 		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
 		{
-			int whiteKey = FloatOrSharpToNote(midiNumber, blackKeyType);
+			int whiteKey = ToWhiteNote(midiNumber, blackKeyType);
 			double y = StaffTop + (4 * LineSpacing) - ((whiteKey - 64) * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
@@ -133,9 +133,10 @@ namespace LearnNotesStaff
 			return midiNumber;
 		}
 
-		private static int FloatOrSharpToNote(int midiNumber, BlackKeyType blackKeyType)
+		private static int ToWhiteNote(int midiNumber, BlackKeyType blackKeyType)
 		{
-			return blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+			int whiteNote = blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+			return whiteNote;
 		}
 
 		private static string GetNoteName(int midiNumber, BlackKeyType blackKeyType)
