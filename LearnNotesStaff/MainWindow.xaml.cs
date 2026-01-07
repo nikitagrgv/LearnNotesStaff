@@ -83,11 +83,27 @@ namespace LearnNotesStaff
 			Flat,
 		}
 
+		private static int WhiteKeysDifference(int firstNote, int secondNote)
+		{
+			int bigger = int.Max(firstNote, secondNote);
+			int smaller = int.Min(firstNote, secondNote);
+
+			int difference = 0;
+			while (smaller < bigger)
+			{
+				difference += IsWhiteKey(smaller) ? 1 : 0;
+				smaller++;
+			}
+
+			return difference;
+		}
+
 		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
 		{
 			int whiteKey = ToWhiteNote(midiNumber, blackKeyType);
 			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
-			double y = StaffTop + (4 * LineSpacing) - ((whiteKey - e4) * (LineSpacing / 2));
+			int difference = WhiteKeysDifference(whiteKey, e4);
+			double y = StaffTop + (4 * LineSpacing) - (difference * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
 			Ellipse noteHead = new Ellipse
@@ -207,7 +223,7 @@ namespace LearnNotesStaff
 		{
 			GenerateNewNote();
 		}
-		
+
 		private void RepeatButton_OnClick(object sender, RoutedEventArgs e)
 		{
 			RedrawCanvas();
