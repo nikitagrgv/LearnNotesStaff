@@ -306,11 +306,10 @@ namespace LearnNotesStaff
 		{
 			if (playedNote == _targetMidiNote)
 			{
-				StatusDisplay.Text = "Correct! Well done.";
+				StatusDisplay.Text = $"Correct! {GetNoteName(playedNote, BlackKeyType.Sharp)}";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Green;
 
-				// Wait a moment then show next note (simplified here)
-				GenerateNewNote();
+				CallAfter(0.5, GenerateNewNote);
 			}
 			else
 			{
