@@ -164,7 +164,7 @@ namespace LearnNotesStaff
 		private static string GetNoteName(int midiNumber, BlackKeyType blackKeyType)
 		{
 			SevenBitNumber note = new((byte)midiNumber);
-			return $"{NoteUtilities.GetNoteName(note)} {NoteUtilities.GetNoteOctave(note)}"
+			return $"{NoteUtilities.GetNoteName(note)}{NoteUtilities.GetNoteOctave(note)}"
 				.Replace("Sharp", "#");
 		}
 
