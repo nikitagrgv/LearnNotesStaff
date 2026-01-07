@@ -275,10 +275,18 @@ namespace LearnNotesStaff
 			if (e.Event is NoteOnEvent noteOn)
 			{
 				int playedNote = noteOn.NoteNumber;
+				PlayNote(playedNote);
 
 				// IMPORTANT: UI updates must happen on the UI Thread
 				Dispatcher.Invoke(() => { CheckNote(playedNote); });
 			}
+		}
+
+		private void PlayNote(int note)
+		{
+			int midiNote = note;
+			double freq = 440 * Math.Pow(2, (midiNote - 69) / 12.0);
+			Console.Beep((int)freq, 500); // 0.5s
 		}
 
 		private void CheckNote(int playedNote)
