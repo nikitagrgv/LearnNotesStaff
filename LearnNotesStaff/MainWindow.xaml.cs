@@ -76,6 +76,20 @@ namespace LearnNotesStaff
 				};
 				StaffCanvas.Children.Add(line);
 			}
+
+			if (end < 0)
+			{
+				Line line = new Line
+				{
+					X1 = -10,
+					X2 = 10,
+					Y1 = StaffTop + ((start - 1) * LineSpacing),
+					Y2 = StaffTop + ((start - 1) * LineSpacing),
+					Stroke = Brushes.Black,
+					StrokeThickness = 2
+				};
+				StaffCanvas.Children.Add(line);
+			}
 		}
 
 		private void ClearCanvas()
