@@ -207,5 +207,10 @@ namespace LearnNotesStaff
 		{
 			GenerateNewNote();
 		}
+		
+		private void RepeatButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			RedrawCanvas();
+		}
 	}
 }
