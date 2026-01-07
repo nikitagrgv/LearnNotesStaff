@@ -8,9 +8,9 @@
         Title="MainWindow" Height="700" Width="800">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-            <TextBlock x:Name="NoteDisplay" Text="Press any key to start" FontSize="30" Margin="20" />
-            <Button x:Name="SkipButton" FontSize="20" Margin="20" Click="SkipButton_OnClick">Skip</Button>
-            <Button x:Name="RepeatButton" FontSize="20" Margin="20" Click="RepeatButton_OnClick">Repeat</Button>
+            <TextBlock x:Name="NoteDisplay" Text="Press any key to start" FontSize="30" Margin="10" />
+            <Button x:Name="SkipButton" Width="200" FontSize="20" Margin="2" Click="SkipButton_OnClick">Skip</Button>
+            <Button x:Name="RepeatButton" Width="200" FontSize="20" Margin="2" Click="RepeatButton_OnClick">Repeat</Button>
             <TextBlock x:Name="StatusDisplay" Text="Waiting..." FontSize="20" Foreground="Gray" />
             <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="StaffCanvas" Background="White"
                     Loaded="StaffCanvas_Loaded">
