@@ -156,6 +156,12 @@ namespace LearnNotesStaff
 			return blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
 		}
 
+		private static string GetNoteName(int midiNumber, BlackKeyType blackKeyType)
+		{
+			SevenBitNumber note = new((byte)midiNumber);
+			return $"{NoteUtilities.GetNoteName(note)} {NoteUtilities.GetNoteOctave(note)}";
+		}
+
 		private void GenerateNewNote()
 		{
 			// Range 60 (Middle C) to 72 (C5)
@@ -165,9 +171,8 @@ namespace LearnNotesStaff
 			// We use Dispatcher because this might be called from the MIDI thread
 			Dispatcher.Invoke(() =>
 			{
-				SevenBitNumber note = new SevenBitNumber((byte)_targetMidiNote);
 				NoteDisplay.Text =
-					$"Play MIDI Note: {NoteUtilities.GetNoteName(note)} {NoteUtilities.GetNoteOctave(note)}";
+					$"Play MIDI Note: {GetNoteName(_targetMidiNote)}";
 				StatusDisplay.Text = "Waiting for input...";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Gray;
 				RedrawCanvas();
