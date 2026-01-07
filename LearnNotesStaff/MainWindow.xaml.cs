@@ -61,8 +61,8 @@ namespace LearnNotesStaff
 
 			int g2 = NoteUtilities.GetNoteNumber(NoteName.G, 2);
 			DrawStaff(BassStaffTop);
-			DrawOtherStaff(_targetMidiNote, e4, BassStaffTop, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, e4, BassStaffTop, _targetBlackKeyType);
+			DrawOtherStaff(_targetMidiNote, g2, BassStaffTop, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, g2, BassStaffTop, _targetBlackKeyType);
 		}
 
 		private void DrawOtherStaff(
