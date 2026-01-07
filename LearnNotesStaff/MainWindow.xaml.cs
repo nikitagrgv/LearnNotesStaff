@@ -66,6 +66,9 @@ namespace LearnNotesStaff
 
 			for (int i = start; i < end; i++)
 			{
+				if (i >= 0 && i < 5)
+					continue;
+
 				Line line = new Line
 				{
 					X1 = -width,
