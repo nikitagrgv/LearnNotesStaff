@@ -109,6 +109,14 @@ namespace LearnNotesStaff
 
 			return $"{name}{octave}";
 		}
+		
+		private static bool IsWhiteKey(int midiNumber)
+		{
+			int noteIndex = midiNumber % 12;
+			// Indices for C, D, E, F, G, A, B
+			int[] whiteKeyIndices = { 0, 2, 4, 5, 7, 9, 11 };
+			return whiteKeyIndices.Contains(noteIndex);
+		}
 
 		private void GenerateNewNote()
 		{
