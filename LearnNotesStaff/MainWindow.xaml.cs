@@ -53,16 +53,16 @@ namespace LearnNotesStaff
 		{
 			ClearCanvas();
 
-			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
+			int staffStartNote = NoteUtilities.GetNoteNumber(NoteName.E, 4);
+			int bassStaffStartNote = NoteUtilities.GetNoteNumber(NoteName.G, 2);
 
 			DrawStaff(StaffTop);
-			DrawOtherStaff(_targetMidiNote, e4, StaffTop, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, e4, StaffTop, _targetBlackKeyType);
+			DrawOtherStaff(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, staffStartNote, StaffTop, _targetBlackKeyType);
 
-			int g2 = NoteUtilities.GetNoteNumber(NoteName.G, 2);
 			DrawStaff(BassStaffTop);
-			DrawOtherStaff(_targetMidiNote, g2, BassStaffTop, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, g2, BassStaffTop, _targetBlackKeyType);
+			DrawOtherStaff(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, bassStaffStartNote, BassStaffTop, _targetBlackKeyType);
 		}
 
 		private void DrawOtherStaff(
