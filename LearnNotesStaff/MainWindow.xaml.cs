@@ -5,6 +5,8 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using Melanchall.DryWetMidi.Common;
+using Melanchall.DryWetMidi.MusicTheory;
 
 namespace LearnNotesStaff
 {
@@ -82,7 +84,7 @@ namespace LearnNotesStaff
 
 		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
 		{
-			int whiteKey = blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+			int whiteKey = FloatOrSharpToNote(midiNumber, blackKeyType);
 			double y = StaffTop + (4 * LineSpacing) - ((whiteKey - 64) * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
@@ -149,6 +151,11 @@ namespace LearnNotesStaff
 			return midiNumber;
 		}
 
+		private static int FloatOrSharpToNote(int midiNumber, BlackKeyType blackKeyType)
+		{
+			return blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+		}
+
 		private void GenerateNewNote()
 		{
 			// Range 60 (Middle C) to 72 (C5)
@@ -158,7 +165,8 @@ namespace LearnNotesStaff
 			// We use Dispatcher because this might be called from the MIDI thread
 			Dispatcher.Invoke(() =>
 			{
-				NoteDisplay.Text = $"Play MIDI Note: {_targetMidiNote}";
+				NoteDisplay.Text =
+					$"Play MIDI Note: {NoteUtilities.GetNoteName(new SevenBitNumber((byte)_targetMidiNote))}";
 				StatusDisplay.Text = "Waiting for input...";
 				StatusDisplay.Foreground = System.Windows.Media.Brushes.Gray;
 				RedrawCanvas();
