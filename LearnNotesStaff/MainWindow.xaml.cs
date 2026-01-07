@@ -58,6 +58,7 @@ namespace LearnNotesStaff
 
 		private void DrawOtherStaff(int targetMidiNote, BlackKeyType targetBlackKeyType)
 		{
+			int width = 15;
 			int notePos = GetNoteShelfPosition(targetMidiNote, targetBlackKeyType);
 			int lines = (-notePos) / 2 + 5;
 			int start = Math.Min(0, lines);
@@ -67,8 +68,8 @@ namespace LearnNotesStaff
 			{
 				Line line = new Line
 				{
-					X1 = -10,
-					X2 = 10,
+					X1 = -width,
+					X2 = width,
 					Y1 = StaffTop + (i * LineSpacing),
 					Y2 = StaffTop + (i * LineSpacing),
 					Stroke = Brushes.Black,
@@ -81,8 +82,8 @@ namespace LearnNotesStaff
 			{
 				Line line = new Line
 				{
-					X1 = -10,
-					X2 = 10,
+					X1 = -width,
+					X2 = width,
 					Y1 = StaffTop + ((start - 1) * LineSpacing),
 					Y2 = StaffTop + ((start - 1) * LineSpacing),
 					Stroke = Brushes.Black,
