@@ -195,5 +195,10 @@ namespace LearnNotesStaff
 			_inputDevice?.Dispose();
 			base.OnClosed(e);
 		}
+
+		private void SkipButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			GenerateNewNote();
+		}
 	}
 }
