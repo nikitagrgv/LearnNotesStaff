@@ -7,12 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
             <TextBlock x:Name="NoteDisplay" Text="Press any key to start" FontSize="30" Margin="20" />
             <TextBlock x:Name="StatusDisplay" Text="Waiting..." FontSize="20" Foreground="Gray" />
-            <Border x:Name="NoteImagePlaceHolder" Width="200" Height="100" Background="LightGray" Margin="20">
-                <Canvas x:Name="StaffCanvas" Background="White" Loaded="StaffCanvas_Loaded"></Canvas>
-            </Border>
+            <Canvas HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="StaffCanvas" Background="White" Loaded="StaffCanvas_Loaded"></Canvas>
         </StackPanel>
     </Grid>
 </Window>
