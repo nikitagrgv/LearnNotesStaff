@@ -95,7 +95,7 @@ namespace LearnNotesStaff
 				smaller++;
 			}
 
-			return difference;
+			return firstNote > secondNote ? difference : -difference;
 		}
 
 		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
