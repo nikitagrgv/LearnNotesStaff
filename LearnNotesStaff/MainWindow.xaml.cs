@@ -64,7 +64,7 @@ namespace LearnNotesStaff
 			int start = Math.Min(0, lines);
 			int end = Math.Max(0, lines);
 
-			for (int i = start; i <= end; i++)
+			for (int i = start; i < end; i++)
 			{
 				Line line = new Line
 				{
