@@ -51,8 +51,8 @@ namespace LearnNotesStaff
 			{
 				Line line = new Line
 				{
-					X1 = 50,
-					X2 = 400,
+					X1 = -100,
+					X2 = 100,
 					Y1 = StaffTop + (i * LineSpacing),
 					Y2 = StaffTop + (i * LineSpacing),
 					Stroke = Brushes.Black,
