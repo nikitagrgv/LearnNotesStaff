@@ -2,6 +2,9 @@
 using Melanchall.DryWetMidi.Multimedia;
 using Melanchall.DryWetMidi.Core;
 using System;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace LearnNotesStaff
 {
@@ -10,6 +13,9 @@ namespace LearnNotesStaff
 		private InputDevice _inputDevice;
 		private int _targetMidiNote;
 		private Random _random = new Random();
+
+		private const double LineSpacing = 20; // Distance between staff lines
+		private const double StaffTop = 100;   // Where the first line starts
 
 		public MainWindow()
 		{
@@ -31,6 +37,51 @@ namespace LearnNotesStaff
 			{
 				MessageBox.Show($"Could not find MIDI device: {ex.Message}");
 			}
+		}
+
+		private void StaffCanvas_Loaded(object sender, RoutedEventArgs e)
+		{
+			DrawStaff();
+			DrawNote(64); // Draw an 'E' (bottom line of treble staff)
+		}
+
+		private void DrawStaff()
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				Line line = new Line
+				{
+					X1 = 50,
+					X2 = 400,
+					Y1 = StaffTop + (i * LineSpacing),
+					Y2 = StaffTop + (i * LineSpacing),
+					Stroke = Brushes.Black,
+					StrokeThickness = 2
+				};
+				StaffCanvas.Children.Add(line);
+			}
+		}
+
+		private void DrawNote(int midiNumber)
+		{
+			// 1. Calculate the vertical position
+			// MIDI 64 (E4) is the bottom line. Let's map it there.
+			// Every 1 MIDI note change is 0.5 * LineSpacing (roughly, ignoring sharps)
+			double y = StaffTop + (4 * LineSpacing) - ((midiNumber - 64) * (LineSpacing / 2));
+
+			// 2. Create the circle (the note head)
+			Ellipse noteHead = new Ellipse
+			{
+				Width = 20,
+				Height = 15, // Notes are slightly oval
+				Fill = Brushes.Black
+			};
+
+			// 3. Position it on the Canvas
+			Canvas.SetLeft(noteHead, 200);
+			Canvas.SetTop(noteHead, y - (noteHead.Height / 2));
+
+			StaffCanvas.Children.Add(noteHead);
 		}
 
 		private void GenerateNewNote()

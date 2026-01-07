@@ -11,7 +11,7 @@
             <TextBlock x:Name="NoteDisplay" Text="Press any key to start" FontSize="30" Margin="20" />
             <TextBlock x:Name="StatusDisplay" Text="Waiting..." FontSize="20" Foreground="Gray" />
             <Border x:Name="NoteImagePlaceHolder" Width="200" Height="100" Background="LightGray" Margin="20">
-                <TextBlock Text="Note Image Here" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <Canvas x:Name="StaffCanvas" Background="White" Loaded="StaffCanvas_Loaded"></Canvas>
             </Border>
         </StackPanel>
     </Grid>
