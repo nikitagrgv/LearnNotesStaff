@@ -171,7 +171,12 @@ namespace LearnNotesStaff
 		private void GenerateNewNote()
 		{
 			// Range 60 (Middle C) to 72 (C5)
-			_targetMidiNote = _random.Next(60, 73);
+			int prev = _targetMidiNote;
+			while (prev == _targetMidiNote)
+			{
+				_targetMidiNote = _random.Next(60, 73);
+			}
+
 			_targetBlackKeyType = _random.NextSingle() > 0.5 ? BlackKeyType.Flat : BlackKeyType.Sharp;
 
 			// We use Dispatcher because this might be called from the MIDI thread
