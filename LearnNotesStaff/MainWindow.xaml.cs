@@ -286,7 +286,7 @@ namespace LearnNotesStaff
 		{
 			int midiNote = note;
 			double freq = 440 * Math.Pow(2, (midiNote - 69) / 12.0);
-			Console.Beep((int)freq, 500); // 0.5s
+			Console.Beep((int)freq, 120); // 0.5s
 		}
 
 		private void CheckNote(int playedNote)
