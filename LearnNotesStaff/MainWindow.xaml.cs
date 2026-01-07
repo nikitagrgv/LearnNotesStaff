@@ -59,8 +59,9 @@ namespace LearnNotesStaff
 		private void DrawOtherStaff(int targetMidiNote, BlackKeyType targetBlackKeyType)
 		{
 			int notePos = GetNoteShelfPosition(targetMidiNote, targetBlackKeyType);
-			int start = Math.Min(0, notePos);
-			int end = Math.Max(0, notePos);
+			int lines = notePos / 2;
+			int start = Math.Min(0, lines);
+			int end = Math.Max(0, lines);
 
 			for (int i = start; i <= end; i++)
 			{
