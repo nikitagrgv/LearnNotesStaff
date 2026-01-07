@@ -137,6 +137,7 @@ namespace LearnNotesStaff
 		private static int ToWhiteNote(int midiNumber, BlackKeyType blackKeyType)
 		{
 			int whiteNote = blackKeyType == BlackKeyType.Sharp ? SharpToNote(midiNumber) : FlatToNote(midiNumber);
+			Debug.Assert(int.Abs(midiNumber - whiteNote) <= 1);
 			Debug.Assert(GetNoteName(midiNumber, BlackKeyType.Sharp).Replace("#", "") ==
 			             GetNoteName(whiteNote, BlackKeyType.Sharp));
 			return whiteNote;
