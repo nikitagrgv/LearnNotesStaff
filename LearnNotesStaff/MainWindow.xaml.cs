@@ -51,15 +51,18 @@ namespace LearnNotesStaff
 		private void RedrawCanvas()
 		{
 			ClearCanvas();
+
+			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
+
 			DrawStaff();
-			DrawOtherStaff(_targetMidiNote, _targetBlackKeyType);
-			DrawNote(_targetMidiNote, _targetBlackKeyType);
+			DrawOtherStaff(_targetMidiNote, e4, _targetBlackKeyType);
+			DrawNote(_targetMidiNote, e4, _targetBlackKeyType);
 		}
 
-		private void DrawOtherStaff(int targetMidiNote, BlackKeyType targetBlackKeyType)
+		private void DrawOtherStaff(int targetMidiNote, int bottomNote, BlackKeyType targetBlackKeyType)
 		{
 			int width = 15;
-			int notePos = GetNoteShelfPosition(targetMidiNote, targetBlackKeyType);
+			int notePos = GetNoteShelfPosition(targetMidiNote, bottomNote, targetBlackKeyType);
 			int lines = (-notePos) / 2 + 5;
 			int start = Math.Min(0, lines);
 			int end = Math.Max(0, lines);
@@ -139,17 +142,16 @@ namespace LearnNotesStaff
 			return firstNote > secondNote ? difference : -difference;
 		}
 
-		private static int GetNoteShelfPosition(int midiNumber, BlackKeyType blackKeyType)
+		private static int GetNoteShelfPosition(int midiNumber, int bottomNote, BlackKeyType blackKeyType)
 		{
 			int whiteKey = ToWhiteNote(midiNumber, blackKeyType);
-			int e4 = NoteUtilities.GetNoteNumber(NoteName.E, 4);
-			int position = WhiteKeysDifference(whiteKey, e4);
+			int position = WhiteKeysDifference(whiteKey, bottomNote);
 			return position;
 		}
 
-		private void DrawNote(int midiNumber, BlackKeyType blackKeyType)
+		private void DrawNote(int midiNumber, int bottomNote, BlackKeyType blackKeyType)
 		{
-			int position = GetNoteShelfPosition(midiNumber, blackKeyType);
+			int position = GetNoteShelfPosition(midiNumber, bottomNote, blackKeyType);
 			double y = StaffTop + (4 * LineSpacing) - (position * (LineSpacing / 2));
 
 			// 2. Create the circle (the note head)
